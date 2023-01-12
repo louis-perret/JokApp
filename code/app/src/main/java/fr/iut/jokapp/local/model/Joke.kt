@@ -1,10 +1,19 @@
 package fr.iut.jokapp.local.model
 
-data class Joke(private var formatVersion: String,
-                private var category: String,
-                private var type: String,
-                private var joke: String,
-                private var flags: MutableList<Boolean>,
-                private var lang: String
+import com.google.gson.annotations.SerializedName
+
+data class Joke(
+    @SerializedName("formatVersion")
+    private var formatVersion: String,
+    @SerializedName("category")
+    private var category: String,
+    @SerializedName("type")
+    private var type: String,
+    @SerializedName("joke")
+    private var joke: String,
+    @SerializedName("flags")
+    private var flags: MutableList<Boolean>,
+    @SerializedName("lang")
+    private var lang: String
 ) {
 }
