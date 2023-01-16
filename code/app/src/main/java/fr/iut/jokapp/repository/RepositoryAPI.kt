@@ -1,7 +1,8 @@
 package fr.iut.jokapp.repository
 
-import retrofit2.Retrofit
-import retrofit2.await
+import android.util.Log
+import fr.iut.jokapp.local.model.Joke
+import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RepositoryAPI() {
@@ -16,11 +17,23 @@ class RepositoryAPI() {
         jokeApiService = retrofit.create(JokeApiService::class.java)
     }
 
-    public fun getAnyJoke(){
-        var result = jokeApiService.getAnyJoke();
-        // var result1 = result.await()
-        if(true){
-            var a = 1;
-        }
+    fun getAnyJoke(){
+        var joke: Joke? = null
+        var request = jokeApiService.getAnyJoke();
+        //var response = request.execute()
+        request.enqueue(object: Callback<Joke> {
+            override fun onResponse(call: Call<Joke>, response: Response<Joke>) {
+                if(response.isSuccessful){
+                    var joke1 = response.body()
+                    var i = 1
+                    i = 1 + 6
+                }
+            }
+
+            override fun onFailure(call: Call<Joke>, t: Throwable) {
+                Log.i("OnFailure", t.message!!)
+            }
+
+        })
     }
 }

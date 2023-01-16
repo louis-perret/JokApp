@@ -11,8 +11,12 @@ data class Joke(
     private var type: String,
     @SerializedName("joke")
     private var joke: String,
+    @SerializedName("setup")
+    private var setup: String,
+    @SerializedName("delivery")
+    private var delivery: String,
     @SerializedName("flags")
-    private var flags: MutableList<Boolean>,
+    private var flags: Flag,
     @SerializedName("lang")
     private var lang: String
 ) {
