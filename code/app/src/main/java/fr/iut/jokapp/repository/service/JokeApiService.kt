@@ -1,4 +1,4 @@
-package fr.iut.jokapp.repository
+package fr.iut.jokapp.repository.service
 
 import fr.iut.jokapp.local.model.Joke
 import retrofit2.Call

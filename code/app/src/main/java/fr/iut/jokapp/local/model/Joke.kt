@@ -10,11 +10,11 @@ data class Joke(
     @SerializedName("type")
     private var type: String,
     @SerializedName("joke")
-    private var joke: String,
+    var joke: String?,
     @SerializedName("setup")
-    private var setup: String,
+    var setup: String?,
     @SerializedName("delivery")
-    private var delivery: String,
+    var delivery: String?,
     @SerializedName("flags")
     private var flags: Flag,
     @SerializedName("lang")
