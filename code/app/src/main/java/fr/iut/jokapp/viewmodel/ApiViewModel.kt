@@ -9,9 +9,10 @@ import fr.iut.jokapp.repository.Repository
 import fr.iut.jokapp.repository.RepositoryAPI
 import kotlinx.coroutines.launch
 
-class ApiViewModel(private var repository: Repository) : ViewModel() {
+class ApiViewModel : ViewModel() {
 
-    private lateinit var _joke: MutableLiveData<Joke>
+    private var repository: Repository = RepositoryAPI()
+    private var _joke: MutableLiveData<Joke> = MutableLiveData<Joke>()
     val joke: LiveData<Joke>
         get() = _joke
 

@@ -3,6 +3,7 @@ package fr.iut.jokapp.view.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
@@ -38,9 +39,9 @@ class MainActivity : AppCompatActivity() {
                     jokeText.text = it.joke
                 }
             }
-
-
         }
+
+        findViewById<Button>(R.id.buttonJoke).setOnClickListener { apiViewModel.getAnyJoke() }
         /*binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
