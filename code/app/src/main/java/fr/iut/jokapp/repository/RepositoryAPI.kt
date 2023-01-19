@@ -1,25 +1,38 @@
 package fr.iut.jokapp.repository
 
-import retrofit2.Retrofit
+import fr.iut.jokapp.local.model.Joke
+import fr.iut.jokapp.repository.service.JokeApiService
+import retrofit2.*
+import retrofit2.converter.gson.GsonConverterFactory
 
-class RepositoryAPI {
+class RepositoryAPI() : Repository{
 
-    private lateinit var jokeApiService: JokeApiService
+    private var jokeApiService: JokeApiService
 
-    constructor(){
+    init {
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://v2.jokeapi.dev/")
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
-
         jokeApiService = retrofit.create(JokeApiService::class.java)
     }
 
-    public fun getAnyJoke(){
-        var result = jokeApiService.getAnyJoke();
-        if(true){
-            var a = 1;
-        }
+    override suspend fun getAnyJoke() : Joke?{
+        return jokeApiService.getAnyJoke().await()
+        //var response = request.execute()
+        /* request.enqueue(object: Callback<Joke> {
+            override fun onResponse(call: Call<Joke>, response: Response<Joke>) {
+                if(response.isSuccessful){
+                    joke = response.body()
+                    var i = 1
+                    i = 1 + 6
+                }
+            }
 
-        Json
+            override fun onFailure(call: Call<Joke>, t: Throwable) {
+                Log.i("OnFailure", t.message!!)
+            }
+
+        })*/
     }
 }
