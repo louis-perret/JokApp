@@ -2,6 +2,7 @@ package fr.iut.jokapp.local.model
 
 import com.google.gson.annotations.SerializedName
 
+// Represent retrieved flags from the API
 data class Flag(
     @SerializedName("nsfw")
     private var nsfw: Boolean,

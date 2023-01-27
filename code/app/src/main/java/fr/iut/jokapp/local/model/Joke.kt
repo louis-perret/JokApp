@@ -2,6 +2,7 @@ package fr.iut.jokapp.local.model
 
 import com.google.gson.annotations.SerializedName
 
+// Represents retrieved joke from the API
 data class Joke(
     @SerializedName("formatVersion")
     private var formatVersion: String,

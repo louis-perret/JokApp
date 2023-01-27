@@ -51,7 +51,6 @@ class GenerateJokePage : AppCompatActivity() {
     }
 
     companion object {
-
         fun getIntent(context: Context) = Intent(context, GenerateJokePage::class.java)
     }
 }
