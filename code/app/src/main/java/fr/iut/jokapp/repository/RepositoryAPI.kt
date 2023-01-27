@@ -1,6 +1,7 @@
 package fr.iut.jokapp.repository
 
-import fr.iut.jokapp.local.model.Joke
+import fr.iut.jokapp.local.modele.Categories
+import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.repository.service.JokeApiService
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,11 +22,11 @@ class RepositoryAPI() : Repository{
     }
 
     // Get any joke independant of choosen parameters
-    override suspend fun getAnyJoke() : Joke?{
-        val test = APIRequestParameter()
-        test.addValue("Programming")
-        test.addValue("Miscellaneous")
-        var testString = test.toString()
-        return jokeApiService.getAnyJoke(test).await()
+    override suspend fun getAnyJoke(categories: List<Categories>) : Joke?{
+        var parameterCategories = APIRequestParameter()
+        for(categ in categories) {
+            parameterCategories.addValue(categ.toString())
+        }
+        return jokeApiService.getAnyJoke(parameterCategories).await()
     }
 }

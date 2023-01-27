@@ -14,4 +14,12 @@
     <string name="buttonGenerateJoke">Générer blague</string>
     <string name="buttonFavorites">Favoris</string>
     <string name="apptTitle">JOKAPP</string>
+    <string name="textViewCategory">Category :</string>
+    <string name="chechBoxAny">Any</string>
+    <string name="checkBoxProgramming">Programming</string>
+    <string name="checkBoxMisc">Misc</string>
+    <string name="checkBoxDark">Dark</string>
+    <string name="checkBoxPun">Pun</string>
+    <string name="chechBoxSpooky">Spooky</string>
+    <string name="checkBoxChristmas">Christmas</string>
 </resources>
