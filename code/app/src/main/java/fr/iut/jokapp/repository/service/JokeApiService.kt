@@ -5,6 +5,7 @@ import fr.iut.jokapp.repository.APIRequestParameter
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 // Service which execute web requests to the API JokeAPI
 interface JokeApiService {
@@ -14,5 +15,5 @@ interface JokeApiService {
             - categs : Representing choosen categories (programming, dark, pun...)
     */
     @GET("joke/{categs}")
-    fun getAnyJoke(@Path("categs") categs: APIRequestParameter): Call<Joke>
+    fun getAnyJoke(@Path("categs") categs: APIRequestParameter, @Query("lang") lang : String): Call<Joke>
 }

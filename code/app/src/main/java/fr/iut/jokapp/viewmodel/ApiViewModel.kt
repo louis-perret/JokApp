@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import fr.iut.jokapp.local.modele.Categories
+import fr.iut.jokapp.local.modele.AvailableCategories
+import fr.iut.jokapp.local.modele.AvailableLanguages
 import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.repository.Repository
 import fr.iut.jokapp.repository.RepositoryAPI
@@ -21,9 +22,9 @@ class ApiViewModel : ViewModel() {
         get() = _joke
 
     // Get any joke
-    fun getAnyJoke(categories: List<Categories>){
+    fun getJoke(categories: List<AvailableCategories>, choosenLanguage : AvailableLanguages){
         viewModelScope.launch {
-            _joke.postValue(repository.getAnyJoke(categories))
+            _joke.postValue(repository.getAnyJoke(categories, choosenLanguage))
         }
     }
 }

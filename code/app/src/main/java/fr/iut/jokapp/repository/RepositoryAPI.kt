@@ -1,6 +1,7 @@
 package fr.iut.jokapp.repository
 
-import fr.iut.jokapp.local.modele.Categories
+import fr.iut.jokapp.local.modele.AvailableCategories
+import fr.iut.jokapp.local.modele.AvailableLanguages
 import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.repository.service.JokeApiService
 import retrofit2.*
@@ -22,11 +23,12 @@ class RepositoryAPI() : Repository{
     }
 
     // Get any joke independant of choosen parameters
-    override suspend fun getAnyJoke(categories: List<Categories>) : Joke?{
+    override suspend fun getAnyJoke(categories: List<AvailableCategories>, language: AvailableLanguages): Joke? {
         var parameterCategories = APIRequestParameter()
         for(categ in categories) {
             parameterCategories.addValue(categ.toString())
         }
-        return jokeApiService.getAnyJoke(parameterCategories).await()
+
+        return jokeApiService.getAnyJoke(parameterCategories, language.toString().lowercase()).await()
     }
 }

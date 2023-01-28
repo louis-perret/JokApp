@@ -1,6 +1,6 @@
 package fr.iut.jokapp.local.modele
 
-enum class Categories {
+enum class AvailableCategories {
 
     Any,
     Programming,

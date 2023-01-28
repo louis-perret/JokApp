@@ -3,6 +3,7 @@ package fr.iut.jokapp.view.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import fr.iut.jokapp.R
@@ -24,11 +25,19 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
 
         setContentView(R.layout.layout_generate_joke)
 
+        if(savedInstanceState != null) {
+            fragmentOptionsJoke = supportFragmentManager.findFragmentById(R.id.fragmentOptions) as FragmentJokeOptions
+            fragmentDisplayJoke = supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) as FragmentDisplayJoke
+        }
         if(supportFragmentManager.findFragmentById(R.id.fragmentOptions) == null) {
             fragmentOptionsJoke = FragmentJokeOptions()
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentOptions, fragmentOptionsJoke)
                 .commit()
+        }
+        else{
+
+            Log.i("OnCreate", "Fragment options récupéré")
         }
 
         if(supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) == null) {
@@ -36,6 +45,10 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentDisplayJoke, fragmentDisplayJoke)
                 .commit()
+        }
+        else{
+
+            Log.i("OnCreate", "Fragment options récupéré")
         }
 
         apiViewModel = ViewModelProvider(this).get(fr.iut.jokapp.viewmodel.ApiViewModel::class.java)
@@ -49,8 +62,14 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
     }
 
     override fun generateJoke() {
-        val categories = fragmentOptionsJoke.getAllChoosenCategories()
-        if(categories.isNotEmpty()) apiViewModel.getAnyJoke(categories)
+        try {
+            val categories = fragmentOptionsJoke.getAllChoosenCategories()
+            val choosenLanguage = fragmentOptionsJoke.getChoosenLanguage()
+            if (categories.isNotEmpty()) apiViewModel.getJoke(categories, choosenLanguage)
+        }
+        catch (e: Exception) {
+            println(e.message)
+        }
     }
 
     companion object {

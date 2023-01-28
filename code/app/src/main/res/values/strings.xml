@@ -22,4 +22,5 @@
     <string name="checkBoxPun">Pun</string>
     <string name="chechBoxSpooky">Spooky</string>
     <string name="checkBoxChristmas">Christmas</string>
+    <string name="textViewLanguages">Languages :</string>
 </resources>
