@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarGenerateJoke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"/>
+
     <FrameLayout
         android:id="@+id/fragmentOptions"
         android:layout_width="wrap_content"

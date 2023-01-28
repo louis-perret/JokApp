@@ -23,4 +23,10 @@
     <string name="chechBoxSpooky">Spooky</string>
     <string name="checkBoxChristmas">Christmas</string>
     <string name="textViewLanguages">Languages :</string>
+    <string name="favoriteIcon">Favorite</string>
+    <string name="filtersOptions">Filters</string>
+    <string name="filtreCategory">Category</string>
+    <string name="filterLanguage">Language</string>
+    <string name="filterBlacklist">Blacklist</string>
+    <string name="filterType">Type</string>
 </resources>
