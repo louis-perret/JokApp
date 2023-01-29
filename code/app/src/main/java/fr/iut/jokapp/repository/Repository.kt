@@ -12,6 +12,7 @@ interface Repository {
     suspend fun getAnyJoke(
         categories: List<AvailableCategories>,
         language: AvailableLanguages,
-        flags: Flag
+        flags: Flag,
+        types: APIRequestParameter
     ) : Joke?
 }

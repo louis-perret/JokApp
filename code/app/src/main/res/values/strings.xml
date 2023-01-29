@@ -37,4 +37,7 @@
     <string name="checkBoxSexist">Sexist</string>
     <string name="checkBoxExplicit">Explicite</string>
     <string name="textViewCategory2">More specific</string>
+    <string name="checkBoxSingleJoke">Single</string>
+    <string name="checkBox2PartsJOke">Two parts</string>
+    <string name="filterTypeJoke">Type of joke</string>
 </resources>

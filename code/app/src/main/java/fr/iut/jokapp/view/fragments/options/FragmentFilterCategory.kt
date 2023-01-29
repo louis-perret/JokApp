@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableCategories
 
-class FragmentFilterCategory : Fragment() {
+class FragmentFilterCategory() : Fragment() {
+
+    private val ISFIRSTRENDER = "isFirstRender"
 
     private var checkBoxAny: CheckBox? = null
     private lateinit var checkBoxProgramming: CheckBox
@@ -34,7 +37,25 @@ class FragmentFilterCategory : Fragment() {
             checkBoxSpooky = findViewById(R.id.checkboxSpooky)
             checkBoxChristmas = findViewById(R.id.checkboxChristmas)
         }
+
+        checkBoxAny?.setOnClickListener { setTheCheckedProperty(!(it as CheckBox).isChecked) }
+        if(savedInstanceState == null || savedInstanceState?.getBoolean(ISFIRSTRENDER)!!) {
+            checkBoxAny?.isChecked = true
+            setTheCheckedProperty(false)
+        }
         return view
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(ISFIRSTRENDER, false)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+    override fun onStop() {
+        super.onStop()
     }
 
     fun getAllChoosenCategories(): List<AvailableCategories> {
@@ -51,5 +72,14 @@ class FragmentFilterCategory : Fragment() {
             if(checkBoxChristmas.isChecked) ans.add(AvailableCategories.Christmas)
         }
         return ans
+    }
+
+    private fun setTheCheckedProperty(value : Boolean) {
+        checkBoxProgramming.isEnabled = value
+        checkBoxMisc.isEnabled = value
+        checkBoxDark.isEnabled = value
+        checkBoxPun.isEnabled = value
+        checkBoxSpooky.isEnabled = value
+        checkBoxChristmas.isEnabled = value
     }
 }

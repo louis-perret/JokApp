@@ -19,6 +19,7 @@ interface JokeApiService {
     fun getAnyJoke(
         @Path("categs") categs: APIRequestParameter,
         @Query("lang") lang: String,
-        @Query("blacklistFlags") flags: Flag
+        @Query("blacklistFlags") flags: Flag,
+        @Query("type") types: APIRequestParameter
     ): Call<Joke>
 }

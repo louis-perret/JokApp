@@ -27,14 +27,15 @@ class RepositoryAPI() : Repository{
     override suspend fun getAnyJoke(
         categories: List<AvailableCategories>,
         language: AvailableLanguages,
-        flags: Flag
+        flags: Flag,
+        types: APIRequestParameter
     ): Joke? {
         var parameterCategories = APIRequestParameter()
         for(categ in categories) {
             parameterCategories.addValue(categ.toString())
         }
 
-        val joke = jokeApiService.getAnyJoke(parameterCategories, language.toString().lowercase(), flags).await()
+        val joke = jokeApiService.getAnyJoke(parameterCategories, language.toString().lowercase(), flags, types).await()
         return joke
     }
 }

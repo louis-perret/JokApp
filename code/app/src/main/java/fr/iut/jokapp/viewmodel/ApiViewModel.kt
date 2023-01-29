@@ -8,6 +8,7 @@ import fr.iut.jokapp.local.modele.AvailableCategories
 import fr.iut.jokapp.local.modele.AvailableLanguages
 import fr.iut.jokapp.local.modele.Flag
 import fr.iut.jokapp.local.modele.Joke
+import fr.iut.jokapp.repository.APIRequestParameter
 import fr.iut.jokapp.repository.Repository
 import fr.iut.jokapp.repository.RepositoryAPI
 import kotlinx.coroutines.launch
@@ -26,10 +27,11 @@ class ApiViewModel : ViewModel() {
     fun getJoke(
         categories: List<AvailableCategories>,
         choosenLanguage: AvailableLanguages,
-        flags: Flag
+        flags: Flag,
+        types: APIRequestParameter
     ){
         viewModelScope.launch {
-            _joke.postValue(repository.getAnyJoke(categories, choosenLanguage, flags))
+            _joke.postValue(repository.getAnyJoke(categories, choosenLanguage, flags, types))
         }
     }
 }

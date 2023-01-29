@@ -11,7 +11,7 @@ import fr.iut.jokapp.local.modele.Flag
 
 class FragmentBlacklist : Fragment() {
 
-    private lateinit var checkBoxNsfw: CheckBox
+    private var checkBoxNsfw: CheckBox? = null
     private lateinit var checkBoxReligious: CheckBox
     private lateinit var checkBoxPolitical: CheckBox
     private lateinit var checkBoxRacist: CheckBox
@@ -38,6 +38,14 @@ class FragmentBlacklist : Fragment() {
     }
 
     fun getAllFlags() : Flag {
-        return Flag(checkBoxNsfw.isChecked, checkBoxReligious.isChecked, checkBoxPolitical.isChecked, checkBoxRacist.isChecked, checkBoxSexist.isChecked, checkBoxExplicit.isChecked)
+        if(checkBoxNsfw == null) return Flag(
+            nsfw = false,
+            religious = false,
+            political = false,
+            racist = false,
+            sexist = false,
+            explicit = false
+        )
+        return Flag(checkBoxNsfw?.isChecked!!, checkBoxReligious.isChecked, checkBoxPolitical.isChecked, checkBoxRacist.isChecked, checkBoxSexist.isChecked, checkBoxExplicit.isChecked)
     }
 }

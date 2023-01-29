@@ -18,6 +18,7 @@ import fr.iut.jokapp.view.fragments.FragmentDisplayJoke
 import fr.iut.jokapp.view.fragments.options.FragmentBlacklist
 import fr.iut.jokapp.view.fragments.options.FragmentFilterCategory
 import fr.iut.jokapp.view.fragments.options.FragmentFilterLanguage
+import fr.iut.jokapp.view.fragments.options.FragmentTypeOfJoke
 import fr.iut.jokapp.viewmodel.ApiViewModel
 
 class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
@@ -27,6 +28,7 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
     private lateinit var fragmentFilterCategory : FragmentFilterCategory
     private lateinit var fragmentFilterLanguage: FragmentFilterLanguage
     private  lateinit var fragmentBlacklist: FragmentBlacklist
+    private lateinit var fragmentTypeOfJoke: FragmentTypeOfJoke
 
     private lateinit var fragmentDisplayJoke: FragmentDisplayJoke
 
@@ -41,6 +43,7 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
         fragmentFilterCategory = FragmentFilterCategory()
         fragmentFilterLanguage = FragmentFilterLanguage()
         fragmentBlacklist = FragmentBlacklist()
+        fragmentTypeOfJoke = FragmentTypeOfJoke()
 
         if(savedInstanceState != null) {
             fragmentDisplayJoke = supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) as FragmentDisplayJoke
@@ -91,6 +94,10 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
                         setFragment(fragmentBlacklist)
                         true
                     }
+                    R.id.action_type -> {
+                        setFragment(fragmentTypeOfJoke)
+                        true
+                    }
                     else -> {
                         true
                     }
@@ -113,7 +120,8 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
             val categories = fragmentFilterCategory.getAllChoosenCategories()
             val choosenLanguage = fragmentFilterLanguage.getChoosenLanguage()
             val flags = fragmentBlacklist.getAllFlags()
-            if (categories.isNotEmpty()) apiViewModel.getJoke(categories, choosenLanguage, flags)
+            val types = fragmentTypeOfJoke.getChoosenTypes()
+            if (categories.isNotEmpty()) apiViewModel.getJoke(categories, choosenLanguage, flags, types)
         }
         catch (e: Exception) {
             println(e.message)
