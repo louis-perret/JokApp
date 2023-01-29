@@ -9,22 +9,28 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import fr.iut.jokapp.R
 import fr.iut.jokapp.view.callbacks.DisplayJokeCallback
 import fr.iut.jokapp.view.fragments.FragmentDisplayJoke
-import fr.iut.jokapp.view.fragments.FragmentJokeOptions
+import fr.iut.jokapp.view.fragments.options.FragmentBlacklist
+import fr.iut.jokapp.view.fragments.options.FragmentFilterCategory
+import fr.iut.jokapp.view.fragments.options.FragmentFilterLanguage
 import fr.iut.jokapp.viewmodel.ApiViewModel
 
 class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
 
-
-    private lateinit var fragmentOptionsJoke : FragmentJokeOptions
-    private lateinit var fragmentDisplayJoke: FragmentDisplayJoke
     private lateinit var apiViewModel: ApiViewModel
 
+    private lateinit var fragmentFilterCategory : FragmentFilterCategory
+    private lateinit var fragmentFilterLanguage: FragmentFilterLanguage
+    private  lateinit var fragmentBlacklist: FragmentBlacklist
+
+    private lateinit var fragmentDisplayJoke: FragmentDisplayJoke
+
+    private var currentDisplayedFragment : Fragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +38,12 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
         setContentView(R.layout.layout_generate_joke)
 
         setSupportActionBar(findViewById(R.id.toolBarGenerateJoke))
-        if(savedInstanceState != null) {
-            fragmentOptionsJoke = supportFragmentManager.findFragmentById(R.id.fragmentOptions) as FragmentJokeOptions
-            fragmentDisplayJoke = supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) as FragmentDisplayJoke
-        }
-        if(supportFragmentManager.findFragmentById(R.id.fragmentOptions) == null) {
-            fragmentOptionsJoke = FragmentJokeOptions()
-            supportFragmentManager.beginTransaction()
-                .add(R.id.fragmentOptions, fragmentOptionsJoke)
-                .commit()
-        }
-        else{
+        fragmentFilterCategory = FragmentFilterCategory()
+        fragmentFilterLanguage = FragmentFilterLanguage()
+        fragmentBlacklist = FragmentBlacklist()
 
-            Log.i("OnCreate", "Fragment options récupéré")
+        if(savedInstanceState != null) {
+            fragmentDisplayJoke = supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) as FragmentDisplayJoke
         }
 
         if(supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) == null) {
@@ -54,7 +53,6 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
                 .commit()
         }
         else{
-
             Log.i("OnCreate", "Fragment options récupéré")
         }
 
@@ -79,24 +77,43 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
                 menuInflater.inflate(R.menu.menu_generate_joke, menu)
             }
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                /*return when (menuItem.itemId) {
-                    R.id.menu_item_new_dog -> {
-                        addNewDog()
+            override fun onMenuItemSelected(menuItem: MenuItem) : Boolean  =
+                when (menuItem.itemId) {
+                    R.id.action_category -> {
+                        setFragment(fragmentFilterCategory)
                         true
                     }
-                    else -> false
-                }*/
-                return true
+                    R.id.action_language -> {
+                        setFragment(fragmentFilterLanguage)
+                        true
+                    }
+                    R.id.action_flags -> {
+                        setFragment(fragmentBlacklist)
+                        true
+                    }
+                    else -> {
+                        true
+                    }
             }
         }, this, Lifecycle.State.RESUMED)
     }
 
+    private fun setFragment(newFragmentToDisplay : Fragment) {
+        if(supportFragmentManager.findFragmentById(R.id.fragmentOptions) == null) {
+            supportFragmentManager.beginTransaction().add(R.id.fragmentOptions, newFragmentToDisplay).commit()
+        }
+        else {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentOptions, newFragmentToDisplay).commit()
+        }
+        currentDisplayedFragment = newFragmentToDisplay
+    }
+
     override fun generateJoke() {
         try {
-            val categories = fragmentOptionsJoke.getAllChoosenCategories()
-            val choosenLanguage = fragmentOptionsJoke.getChoosenLanguage()
-            if (categories.isNotEmpty()) apiViewModel.getJoke(categories, choosenLanguage)
+            val categories = fragmentFilterCategory.getAllChoosenCategories()
+            val choosenLanguage = fragmentFilterLanguage.getChoosenLanguage()
+            val flags = fragmentBlacklist.getAllFlags()
+            if (categories.isNotEmpty()) apiViewModel.getJoke(categories, choosenLanguage, flags)
         }
         catch (e: Exception) {
             println(e.message)

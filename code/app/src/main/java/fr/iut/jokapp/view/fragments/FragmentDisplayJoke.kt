@@ -34,15 +34,20 @@ class FragmentDisplayJoke(private val listener: DisplayJokeCallback) : Fragment(
     }
 
     fun setCurrentJoke(jokeToDisplay : Joke) {
-        this.jokeToDisplay = jokeToDisplay
+        buttonShow2PartOfJoke.visibility = View.INVISIBLE
         textViewSecondPartOfTheJoke.text = ""
-        if(jokeToDisplay.joke != null){
-            buttonShow2PartOfJoke.visibility = View.INVISIBLE
-            jokeText.text = jokeToDisplay.joke
+        if(jokeToDisplay.joke == null && jokeToDisplay.setup == null) {
+            jokeText.text = getString(R.string.textNoFoundJoke)
         }
-        else{
-            buttonShow2PartOfJoke.visibility = View.VISIBLE
-            jokeText.text = jokeToDisplay.setup
+        else {
+            this.jokeToDisplay = jokeToDisplay
+            if(jokeToDisplay.joke != null) {
+                jokeText.text = jokeToDisplay.joke
+            }
+            else{
+                buttonShow2PartOfJoke.visibility = View.VISIBLE
+                jokeText.text = jokeToDisplay.setup
+            }
         }
     }
 }

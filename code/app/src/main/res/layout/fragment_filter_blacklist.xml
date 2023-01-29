@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/filterCategory"
+        android:text="@string/filterBlacklist"
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:textSize="@dimen/titleFilter"/>
@@ -16,57 +16,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/textViewCategory"/>
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkboxAny"
-            android:text="@string/chechBoxAny"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textViewCategory2"
         android:layout_gravity="center"
-        android:textSize="20sp"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        >
 
         <CheckBox
-            android:id="@+id/checkboxProgramming"
+            android:id="@+id/checkboxNsfw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/checkBoxProgramming"/>
+            android:text="@string/checkBoxNsfw"/>
 
         <CheckBox
-            android:id="@+id/checkboxMisc"
+            android:id="@+id/checkboxReligious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/checkBoxMisc"/>
+            android:text="@string/checkBoxReligious"/>
 
         <CheckBox
-            android:id="@+id/checkboxDark"
+            android:id="@+id/checkboxPolitical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/checkBoxDark"/>
+            android:text="@string/checkBoxPolitical"/>
 
         <CheckBox
-            android:id="@+id/checkboxPun"
+            android:id="@+id/checkboxRacist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/checkBoxPun"/>
+            android:text="@string/checkBoxRacist"/>
+
 
     </LinearLayout>
 
@@ -77,17 +53,16 @@
         android:layout_gravity="center">
 
         <CheckBox
-            android:id="@+id/checkboxSpooky"
+            android:id="@+id/checkboxSexist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chechBoxSpooky"/>
+            android:text="@string/checkBoxSexist"/>
 
         <CheckBox
-            android:id="@+id/checkboxChristmas"
+            android:id="@+id/checkboxExplicit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/checkBoxChristmas"/>
+            android:text="@string/checkBoxExplicit"/>
 
     </LinearLayout>
-
 </LinearLayout>

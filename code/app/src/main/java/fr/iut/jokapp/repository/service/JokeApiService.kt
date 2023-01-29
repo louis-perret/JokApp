@@ -1,5 +1,6 @@
 package fr.iut.jokapp.repository.service
 
+import fr.iut.jokapp.local.modele.Flag
 import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.repository.APIRequestParameter
 import retrofit2.Call
@@ -15,5 +16,9 @@ interface JokeApiService {
             - categs : Representing choosen categories (programming, dark, pun...)
     */
     @GET("joke/{categs}")
-    fun getAnyJoke(@Path("categs") categs: APIRequestParameter, @Query("lang") lang : String): Call<Joke>
+    fun getAnyJoke(
+        @Path("categs") categs: APIRequestParameter,
+        @Query("lang") lang: String,
+        @Query("blacklistFlags") flags: Flag
+    ): Call<Joke>
 }

@@ -14,7 +14,7 @@
     <string name="buttonGenerateJoke">Générer blague</string>
     <string name="buttonFavorites">Favoris</string>
     <string name="apptTitle">JOKAPP</string>
-    <string name="textViewCategory">Category :</string>
+    <string name="textViewCategory">By default :</string>
     <string name="chechBoxAny">Any</string>
     <string name="checkBoxProgramming">Programming</string>
     <string name="checkBoxMisc">Misc</string>
@@ -25,8 +25,16 @@
     <string name="textViewLanguages">Languages :</string>
     <string name="favoriteIcon">Favorite</string>
     <string name="filtersOptions">Filters</string>
-    <string name="filtreCategory">Category</string>
+    <string name="filterCategory">Category</string>
     <string name="filterLanguage">Language</string>
     <string name="filterBlacklist">Blacklist</string>
     <string name="filterType">Type</string>
+    <string name="textNoFoundJoke">No joke were found wtih these filters</string>
+    <string name="checkBoxNsfw">Nsfw</string>
+    <string name="checkBoxReligious">Religious</string>
+    <string name="checkBoxPolitical">Political</string>
+    <string name="checkBoxRacist">Racist</string>
+    <string name="checkBoxSexist">Sexist</string>
+    <string name="checkBoxExplicit">Explicite</string>
+    <string name="textViewCategory2">More specific</string>
 </resources>

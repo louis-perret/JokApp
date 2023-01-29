@@ -20,7 +20,7 @@
         <menu>
             <item
                 android:id="@+id/action_category"
-                android:title="@string/filtreCategory"/>
+                android:title="@string/filterCategory"/>
 
             <item
                 android:id="@+id/action_language"

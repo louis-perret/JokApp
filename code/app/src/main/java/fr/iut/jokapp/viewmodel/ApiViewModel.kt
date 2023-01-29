@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.iut.jokapp.local.modele.AvailableCategories
 import fr.iut.jokapp.local.modele.AvailableLanguages
+import fr.iut.jokapp.local.modele.Flag
 import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.repository.Repository
 import fr.iut.jokapp.repository.RepositoryAPI
@@ -22,9 +23,13 @@ class ApiViewModel : ViewModel() {
         get() = _joke
 
     // Get any joke
-    fun getJoke(categories: List<AvailableCategories>, choosenLanguage : AvailableLanguages){
+    fun getJoke(
+        categories: List<AvailableCategories>,
+        choosenLanguage: AvailableLanguages,
+        flags: Flag
+    ){
         viewModelScope.launch {
-            _joke.postValue(repository.getAnyJoke(categories, choosenLanguage))
+            _joke.postValue(repository.getAnyJoke(categories, choosenLanguage, flags))
         }
     }
 }

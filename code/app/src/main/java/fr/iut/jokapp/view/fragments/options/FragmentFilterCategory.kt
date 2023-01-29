@@ -1,34 +1,30 @@
-package fr.iut.jokapp.view.fragments
+package fr.iut.jokapp.view.fragments.options
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.CheckBox
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableCategories
-import fr.iut.jokapp.local.modele.AvailableLanguages
 
-class FragmentJokeOptions : Fragment() {
+class FragmentFilterCategory : Fragment() {
 
-    private lateinit var checkBoxAny: CheckBox
+    private var checkBoxAny: CheckBox? = null
     private lateinit var checkBoxProgramming: CheckBox
     private lateinit var checkBoxMisc: CheckBox
     private lateinit var checkBoxDark: CheckBox
     private lateinit var checkBoxPun: CheckBox
     private lateinit var checkBoxSpooky: CheckBox
     private lateinit var checkBoxChristmas: CheckBox
-    private lateinit var spinnerLanguage: Spinner
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.fragment_joke_options, container, false)
+        val view = inflater.inflate(R.layout.fragment_filter_category, container, false)
         with(view) {
             checkBoxAny = findViewById(R.id.checkboxAny)
             checkBoxProgramming = findViewById(R.id.checkboxProgramming)
@@ -37,17 +33,13 @@ class FragmentJokeOptions : Fragment() {
             checkBoxPun = findViewById(R.id.checkboxPun)
             checkBoxSpooky = findViewById(R.id.checkboxSpooky)
             checkBoxChristmas = findViewById(R.id.checkboxChristmas)
-            spinnerLanguage = findViewById(R.id.spinnerLanguages)
         }
-
-        spinnerLanguage.adapter = ArrayAdapter(view.context, R.layout.spinner_cell_language, AvailableLanguages.values())
-        spinnerLanguage.setSelection(0)
         return view
     }
 
     fun getAllChoosenCategories(): List<AvailableCategories> {
         var ans: MutableList<AvailableCategories> = ArrayList()
-        if(checkBoxAny.isChecked) {
+        if(checkBoxAny == null || checkBoxAny?.isChecked!!) {
             ans.add(AvailableCategories.Any)
         }
         else {
@@ -59,9 +51,5 @@ class FragmentJokeOptions : Fragment() {
             if(checkBoxChristmas.isChecked) ans.add(AvailableCategories.Christmas)
         }
         return ans
-    }
-
-    fun getChoosenLanguage() : AvailableLanguages{
-        return spinnerLanguage.selectedItem as AvailableLanguages
     }
 }
