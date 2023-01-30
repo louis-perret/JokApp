@@ -1,5 +1,6 @@
 package fr.iut.jokapp.view.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +12,13 @@ import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.view.callbacks.DisplayJokeCallback
 
-class FragmentDisplayJoke(private val listener: DisplayJokeCallback) : Fragment(){
+class FragmentDisplayJoke() : Fragment(){
 
     private lateinit var jokeToDisplay: Joke
     private lateinit var jokeText: TextView
     private lateinit var buttonShow2PartOfJoke : Button
     private lateinit var textViewSecondPartOfTheJoke : TextView
+    private var listener: DisplayJokeCallback? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +31,23 @@ class FragmentDisplayJoke(private val listener: DisplayJokeCallback) : Fragment(
         textViewSecondPartOfTheJoke = view.findViewById(R.id.secondPartOfTheJoke)
         buttonShow2PartOfJoke.setOnClickListener { textViewSecondPartOfTheJoke.text = jokeToDisplay.delivery }
 
-        view.findViewById<Button>(R.id.buttonJoke).setOnClickListener { listener.generateJoke() }
+        view.findViewById<Button>(R.id.buttonJoke).setOnClickListener { listener?.generateJoke() }
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is DisplayJokeCallback) {
+            listener = context
+        }
+        else {
+            throw RuntimeException("$context must implement OnInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     fun setCurrentJoke(jokeToDisplay : Joke) {

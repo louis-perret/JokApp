@@ -1,4 +1,4 @@
-package fr.iut.jokapp.repository
+package fr.iut.jokapp.network.api
 
 import fr.iut.jokapp.local.modele.AvailableCategories
 import fr.iut.jokapp.local.modele.AvailableLanguages

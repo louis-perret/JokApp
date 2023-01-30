@@ -1,8 +1,8 @@
-package fr.iut.jokapp.repository.service
+package fr.iut.jokapp.network.service
 
 import fr.iut.jokapp.local.modele.Flag
 import fr.iut.jokapp.local.modele.Joke
-import fr.iut.jokapp.repository.APIRequestParameter
+import fr.iut.jokapp.network.api.APIRequestParameter
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

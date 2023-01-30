@@ -40,6 +40,7 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
         setContentView(R.layout.layout_generate_joke)
 
         setSupportActionBar(findViewById(R.id.toolBarGenerateJoke))
+
         fragmentFilterCategory = FragmentFilterCategory()
         fragmentFilterLanguage = FragmentFilterLanguage()
         fragmentBlacklist = FragmentBlacklist()
@@ -50,13 +51,10 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
         }
 
         if(supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) == null) {
-            fragmentDisplayJoke = FragmentDisplayJoke(this)
+            fragmentDisplayJoke = FragmentDisplayJoke()
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragmentDisplayJoke, fragmentDisplayJoke)
                 .commit()
-        }
-        else{
-            Log.i("OnCreate", "Fragment options récupéré")
         }
 
         apiViewModel = ViewModelProvider(this).get(fr.iut.jokapp.viewmodel.ApiViewModel::class.java)
@@ -130,6 +128,28 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
 
     companion object {
         fun getIntent(context: Context) = Intent(context, GenerateJokePageActivity::class.java)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("ffrf", true)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+    }
+    override fun onStop() {
+
+        super.onStop()
+    }
+
+    override fun onPause() {
+
+        super.onPause()
     }
 
 }

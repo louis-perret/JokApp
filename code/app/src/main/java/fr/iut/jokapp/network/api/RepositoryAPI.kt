@@ -1,15 +1,15 @@
-package fr.iut.jokapp.repository
+package fr.iut.jokapp.network.api
 
 import fr.iut.jokapp.local.modele.AvailableCategories
 import fr.iut.jokapp.local.modele.AvailableLanguages
 import fr.iut.jokapp.local.modele.Flag
 import fr.iut.jokapp.local.modele.Joke
-import fr.iut.jokapp.repository.service.JokeApiService
+import fr.iut.jokapp.network.service.JokeApiService
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
 // The repository which do request and treat answers from the API JokeAPI
-class RepositoryAPI() : Repository{
+class RepositoryAPI() : Repository {
 
     // Service which execute web requests
     private var jokeApiService: JokeApiService

@@ -1,4 +1,4 @@
-package fr.iut.jokapp.repository
+package fr.iut.jokapp.network.api
 
 import retrofit2.Converter
 import retrofit2.Retrofit

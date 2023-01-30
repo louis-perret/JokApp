@@ -58,6 +58,9 @@ class FragmentFilterCategory() : Fragment() {
         super.onStop()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
     fun getAllChoosenCategories(): List<AvailableCategories> {
         var ans: MutableList<AvailableCategories> = ArrayList()
         if(checkBoxAny == null || checkBoxAny?.isChecked!!) {

@@ -1,4 +1,4 @@
-package fr.iut.jokapp.repository
+package fr.iut.jokapp.network.api
 
 // Class representing a parameter for the web request to the API Joke API
 class APIRequestParameter {

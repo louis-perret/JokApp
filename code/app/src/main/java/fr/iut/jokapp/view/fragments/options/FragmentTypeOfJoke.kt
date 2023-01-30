@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
-import fr.iut.jokapp.repository.APIRequestParameter
+import fr.iut.jokapp.network.api.APIRequestParameter
 
 class FragmentTypeOfJoke : Fragment() {
 
