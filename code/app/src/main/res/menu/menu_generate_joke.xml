@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="fr.iut.jokapp.view.activity.HomeActivity"
+
+    >
+
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
+        android:title="@string/favoriteIcon"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_filters"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:title="@string/filtersOptions"
+        app:showAsAction="always"
+        >
+
+        <menu>
+            <item
+                android:id="@+id/action_category"
+                android:title="@string/filterCategory"/>
+
+            <item
+                android:id="@+id/action_language"
+                android:title="@string/filterLanguage"/>
+
+            <item
+                android:id="@+id/action_flags"
+                android:title="@string/filterBlacklist"/>
+
+            <item
+                android:id="@+id/action_type"
+                android:title="@string/filterType"/>
+        </menu>
+    </item>
+
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never"/>
+</menu>
