@@ -39,7 +39,7 @@ class FragmentFilterCategory() : Fragment() {
         }
 
         checkBoxAny?.setOnClickListener { setTheCheckedProperty(!(it as CheckBox).isChecked) }
-        if(savedInstanceState == null || savedInstanceState?.getBoolean(ISFIRSTRENDER)!!) {
+        if(!checkBoxAny?.isChecked!! && !checkBoxProgramming.isChecked && !checkBoxMisc.isChecked && !checkBoxDark.isChecked && !checkBoxPun.isChecked && !checkBoxSpooky.isChecked && !checkBoxChristmas.isChecked) {
             checkBoxAny?.isChecked = true
             setTheCheckedProperty(false)
         }
