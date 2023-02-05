@@ -6,17 +6,17 @@ import kotlin.math.exp
 // Represent retrieved flags from the API
 data class Flag(
     @SerializedName("nsfw")
-    private var nsfw: Boolean,
+    var nsfw: Boolean,
     @SerializedName("religious")
-    private var religious: Boolean,
+    var religious: Boolean,
     @SerializedName("political")
-    private var political: Boolean,
+    var political: Boolean,
     @SerializedName("racist")
-    private var racist: Boolean,
+    var racist: Boolean,
     @SerializedName("sexist")
-    private var sexist: Boolean,
+    var sexist: Boolean,
     @SerializedName("explicit")
-    private var explicit: Boolean
+    var explicit: Boolean
 ){
     override fun toString(): String {
         val res = StringBuilder()

@@ -5,14 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import fr.iut.jokapp.repository.converter.AvailableCategoriesToString
+import fr.iut.jokapp.repository.converter.ListAvailableCategoriesToString
 import fr.iut.jokapp.repository.converter.AvailableLanguagesToInt
 import fr.iut.jokapp.repository.entity.JokeEntity
 
 private const val JOKE_DB_FILENAME = "joke.db"
 
 @Database(entities = [JokeEntity::class], version = 1)
-@TypeConverters(AvailableCategoriesToString::class, AvailableLanguagesToInt::class)
+@TypeConverters(ListAvailableCategoriesToString::class, AvailableLanguagesToInt::class)
 abstract class JokeDatabase : RoomDatabase() {
 
     abstract fun jokeDAO() : JokeDao

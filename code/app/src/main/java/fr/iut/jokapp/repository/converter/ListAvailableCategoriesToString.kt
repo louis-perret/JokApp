@@ -3,7 +3,7 @@ package fr.iut.jokapp.repository.converter
 import androidx.room.TypeConverter
 import fr.iut.jokapp.local.modele.AvailableCategories
 
-class AvailableCategoriesToString {
+class ListAvailableCategoriesToString {
 
     @TypeConverter
     fun fromString(input: String) : List<AvailableCategories> {

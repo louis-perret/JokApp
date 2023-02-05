@@ -96,6 +96,10 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
                         setFragment(fragmentTypeOfJoke)
                         true
                     }
+                    R.id.action_favorite -> {
+                        apiViewModel.addJoke()
+                        true
+                    }
                     else -> {
                         true
                     }

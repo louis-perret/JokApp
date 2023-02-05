@@ -12,6 +12,7 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(R.layout.layout_home)
         findViewById<Button>(R.id.buttonGenerateJoke).setOnClickListener { startActivity(GenerateJokePageActivity.getIntent(this)) }
+        findViewById<Button>(R.id.buttonShowFavorites).setOnClickListener { startActivity(FavoriteJokesActivity.getIntent(this)) }
     }
 
 

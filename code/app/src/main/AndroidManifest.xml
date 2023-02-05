@@ -35,6 +35,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.activity.HomeActivity" />
         </activity>
+
+        <activity android:name=".view.activity.FavoriteJokesActivity" android:exported="false" android:parentActivityName=".view.activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.activity.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

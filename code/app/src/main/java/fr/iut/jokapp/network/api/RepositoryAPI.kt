@@ -5,6 +5,7 @@ import fr.iut.jokapp.local.modele.AvailableLanguages
 import fr.iut.jokapp.local.modele.Flag
 import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.network.service.JokeApiService
+import fr.iut.jokapp.repository.room.JokeDatabase
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
