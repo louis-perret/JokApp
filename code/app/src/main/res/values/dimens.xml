@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="titleFilter">25sp</dimen>
+    <dimen name="titreJokeCell">16sp</dimen>
 </resources>

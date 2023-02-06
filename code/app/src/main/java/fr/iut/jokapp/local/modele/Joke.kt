@@ -7,7 +7,7 @@ data class Joke(
     @SerializedName("id")
     var id: Int,
     @SerializedName("formatVersion")
-    var formatVersion: String,
+    var formatVersion: String?,
     @SerializedName("category")
     var category: String,
     @SerializedName("type")

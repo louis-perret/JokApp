@@ -12,7 +12,7 @@ fun Joke.toEntity() : JokeEntity {
     lang = l
   }
  }
- return JokeEntity(this.id, this.formatVersion, ListAvailableCategoriesToString().fromString(this.category), this.type, this.joke, this.setup, this.delivery, this.flags, lang)
+ return JokeEntity(this.id, this.formatVersion, this.category, this.type, this.joke, this.setup, this.delivery, this.flags, lang)
 }
 
 fun List<Joke>.toEntity() : List<JokeEntity> {
@@ -23,7 +23,7 @@ fun List<Joke>.toEntity() : List<JokeEntity> {
  return result
 }
 
-fun JokeEntity.toModel() = Joke(this.id, this.formatVersion, ListAvailableCategoriesToString().toString(this.category!!), this.type, this.joke, this.setup, this.delivery, this.flags!!, this.lang.toString())
+fun JokeEntity.toModel() = Joke(this.id, this.formatVersion, this.category!!, this.type, this.joke, this.setup, this.delivery, this.flags!!, this.lang.toString())
 
 fun List<JokeEntity>.toModels() : List<Joke> {
  val result = ArrayList<Joke>()

@@ -12,7 +12,7 @@ import fr.iut.jokapp.repository.entity.JokeEntity
 private const val JOKE_DB_FILENAME = "joke.db"
 
 @Database(entities = [JokeEntity::class], version = 1)
-@TypeConverters(ListAvailableCategoriesToString::class, AvailableLanguagesToInt::class)
+@TypeConverters(AvailableLanguagesToInt::class)
 abstract class JokeDatabase : RoomDatabase() {
 
     abstract fun jokeDAO() : JokeDao

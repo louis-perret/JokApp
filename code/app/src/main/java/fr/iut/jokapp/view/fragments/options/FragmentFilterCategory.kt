@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableCategories
@@ -68,7 +67,7 @@ class FragmentFilterCategory() : Fragment() {
         }
         else {
             if(checkBoxProgramming.isChecked) ans.add(AvailableCategories.Programming)
-            if(checkBoxMisc.isChecked) ans.add(AvailableCategories.Miscellaneous)
+            if(checkBoxMisc.isChecked) ans.add(AvailableCategories.Misc)
             if(checkBoxDark.isChecked) ans.add(AvailableCategories.Dark)
             if(checkBoxPun.isChecked) ans.add(AvailableCategories.Pun)
             if(checkBoxSpooky.isChecked) ans.add(AvailableCategories.Spooky)

@@ -13,8 +13,8 @@ const val NEW_JOKE_ID = 0
 @Entity(tableName = "jokes")
 class JokeEntity(
     @PrimaryKey val id: Int = NEW_JOKE_ID,
-    var formatVersion: String = "",
-    var category: List<AvailableCategories>? = null,
+    var formatVersion: String? = null,
+    var category: String = "",
     var type: String = "",
     var joke: String? = null,
     var setup: String? = null,

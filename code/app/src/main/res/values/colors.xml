@@ -7,4 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorAny">#FFFFFF</color>
+    <color name="colorProgramming">#91DCFF</color>
+    <color name="colorMisc">#c8afff</color>
+    <color name="colorDark">#dddddd</color>
+    <color name="colorPun">#f6d6ff</color>
+    <color name="colorSpooky">#fee5be</color>
+    <color name="colorChristmas">#ff8680</color>
+
+    <color name="colorAnyClicked">#e4e3e6</color>
+    <color name="colorProgrammingClicked">#84c6e5</color>
+    <color name="colorMiscClicked">#b59fe6</color>
+    <color name="colorDarkClicked">#c1c1c1</color>
+    <color name="colorPunClicked">#e0c6e7</color>
+    <color name="colorSpookyClicked">#f3dbb6</color>
+    <color name="colorChristmasClicked">#e27873</color>
 </resources>

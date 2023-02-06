@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e87605e2d8ec715ecf6b2f5e0296f604",
+    "identityHash": "0aa5e6156a2e035bff9a80eeca95a0c0",
     "entities": [
       {
         "tableName": "jokes",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `formatVersion` TEXT NOT NULL, `category` TEXT, `type` TEXT NOT NULL, `joke` TEXT, `setup` TEXT, `delivery` TEXT, `lang` INTEGER NOT NULL, `nsfw` INTEGER, `religious` INTEGER, `political` INTEGER, `racist` INTEGER, `sexist` INTEGER, `explicit` INTEGER, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `formatVersion` TEXT, `category` TEXT NOT NULL, `type` TEXT NOT NULL, `joke` TEXT, `setup` TEXT, `delivery` TEXT, `lang` INTEGER NOT NULL, `nsfw` INTEGER, `religious` INTEGER, `political` INTEGER, `racist` INTEGER, `sexist` INTEGER, `explicit` INTEGER, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -18,13 +18,13 @@
             "fieldPath": "formatVersion",
             "columnName": "formatVersion",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "category",
             "columnName": "category",
             "affinity": "TEXT",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "type",
@@ -106,7 +106,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e87605e2d8ec715ecf6b2f5e0296f604')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0aa5e6156a2e035bff9a80eeca95a0c0')"
     ]
   }
 }

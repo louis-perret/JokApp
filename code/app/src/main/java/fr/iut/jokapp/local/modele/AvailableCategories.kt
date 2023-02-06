@@ -4,7 +4,7 @@ enum class AvailableCategories {
 
     Any,
     Programming,
-    Miscellaneous,
+    Misc,
     Dark,
     Pun,
     Spooky,
