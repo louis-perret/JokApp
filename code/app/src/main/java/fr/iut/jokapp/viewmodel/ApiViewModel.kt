@@ -44,4 +44,12 @@ class ApiViewModel : ViewModel() {
             }
         }
     }
+
+    fun deleteJoke(joke: Joke?) {
+        viewModelScope.launch {
+            if(joke != null) {
+                JokeDatabase.getInstance().jokeDAO().delete(joke.toEntity())
+            }
+        }
+    }
 }

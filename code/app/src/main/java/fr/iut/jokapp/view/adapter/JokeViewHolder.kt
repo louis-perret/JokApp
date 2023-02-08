@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableCategories
 import fr.iut.jokapp.local.modele.Joke
+import fr.iut.jokapp.view.callbacks.OnItemClickListener
+import fr.iut.jokapp.view.callbacks.SetCurrentJokeCallback
 
-class JokeViewHolder(private var itemView : View) : ViewHolder(itemView) {
+class JokeViewHolder(private var itemView : View,  private var listener : OnItemClickListener) : ViewHolder(itemView) {
 
+    private var joke : Joke? = null
     private var textViewTypeJoke : TextView
     private var textViewLangJoke : TextView
     private var textViewTextJoke : TextView
@@ -18,6 +21,7 @@ class JokeViewHolder(private var itemView : View) : ViewHolder(itemView) {
     private var textViewTextJokeCategory : TextView
     private var cardViewJokeViewHolder : CardView
 
+    private var currentColor : Int = 0
     private var colorNotClicked : Int = 0
     private var colorClicked : Int = 0
 
@@ -30,9 +34,20 @@ class JokeViewHolder(private var itemView : View) : ViewHolder(itemView) {
             textViewTextJokeCategory = findViewById(R.id.textJokeCategory)
             cardViewJokeViewHolder = findViewById(R.id.cardViewJokeViewHolder)
         }
+        cardViewJokeViewHolder.setOnClickListener() {
+            if(currentColor == colorNotClicked) {
+                currentColor = colorClicked
+            }
+            else {
+                currentColor = colorNotClicked
+            }
+            listener.onClick(joke,adapterPosition)
+        }
+
     }
 
     fun bind(joke : Joke) {
+        this.joke = joke
         with(joke) {
             textViewTypeJoke.text = type
             textViewLangJoke.text = lang
@@ -79,8 +94,9 @@ class JokeViewHolder(private var itemView : View) : ViewHolder(itemView) {
                 }
             }
 
+            currentColor = colorNotClicked
             cardViewJokeViewHolder.setCardBackgroundColor(
-                ContextCompat.getColor(itemView.context, colorNotClicked)
+                ContextCompat.getColor(itemView.context, currentColor)
             )
 
         }
