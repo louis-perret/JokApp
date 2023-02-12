@@ -10,10 +10,15 @@ import fr.iut.jokapp.repository.room.JokeDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+// Execute request to the database
 class RepositoryBD : RepositoryPersistance {
+
+    // Get all jokes
     override fun getAllJoke() = JokeDatabase.getInstance().jokeDAO().getAll()
 
+    // Insert a joke
     override suspend fun addJoke(joke: Joke) = withContext(Dispatchers.IO) { JokeDatabase.getInstance().jokeDAO().insertJoke(joke.toEntity()) }
 
+    // Delete a joke
     override suspend fun deleteJoke(joke: JokeEntity) = withContext(Dispatchers.IO) { JokeDatabase.getInstance().jokeDAO().delete(joke) }
 }

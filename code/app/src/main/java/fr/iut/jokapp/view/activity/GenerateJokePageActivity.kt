@@ -22,8 +22,10 @@ import fr.iut.jokapp.view.fragments.options.FragmentFilterLanguage
 import fr.iut.jokapp.view.fragments.options.FragmentTypeOfJoke
 import fr.iut.jokapp.viewmodel.ViewModelGenerateJoke
 
+// Represents the UI of the generation of a joke from the api
 class GenerateJokePageActivity : SimpleBaseActivity(), DisplayJokeCallback {
 
+    // View-Model
     private lateinit var apiViewModel: ViewModelGenerateJoke
 
     private lateinit var fragmentFilterCategory : FragmentFilterCategory
@@ -47,6 +49,7 @@ class GenerateJokePageActivity : SimpleBaseActivity(), DisplayJokeCallback {
         fragmentTypeOfJoke = FragmentTypeOfJoke()
         setFragment(fragmentFilterCategory)
 
+        // If it just turn the screen, get the older displayer joke fragment
         if(savedInstanceState != null) {
             fragmentDisplayJoke = supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) as FragmentDisplayJoke
         }
@@ -121,6 +124,7 @@ class GenerateJokePageActivity : SimpleBaseActivity(), DisplayJokeCallback {
         currentDisplayedFragment = newFragmentToDisplay
     }
 
+    // Retrieves all of filters and does an ask for a request to the api
     override fun generateJoke() {
         try {
             val categories = fragmentFilterCategory.getAllChoosenCategories()

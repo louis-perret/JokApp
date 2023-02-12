@@ -10,6 +10,7 @@ import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.Flag
 import fr.iut.jokapp.view.JokAppApplication
 
+// Represents the fragment for the different flags (blacklist) that we can choose
 class FragmentBlacklist : Fragment() {
 
     private var checkBoxNsfw: CheckBox? = null
@@ -35,6 +36,7 @@ class FragmentBlacklist : Fragment() {
             checkBoxExplicit = findViewById(R.id.checkboxExplicit)
         }
 
+        // To retrieve the old values of this fragment when the user came back to the activity GenerateJokePageActivity
         val preferences = requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)
         with(preferences) {
             checkBoxNsfw!!.isChecked = getBoolean(JokAppApplication.ISCHECKEDNSFW, false)
@@ -60,6 +62,7 @@ class FragmentBlacklist : Fragment() {
     }
 
     override fun onDestroy() {
+        // To save values of this fragment when the user change the displayed fragment
         with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()) {
             putBoolean(JokAppApplication.ISCHECKEDNSFW, checkBoxNsfw!!.isChecked)
             putBoolean(JokAppApplication.ISCHECKEDRELIGIOUS, checkBoxReligious.isChecked)

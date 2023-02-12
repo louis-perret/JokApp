@@ -24,7 +24,7 @@ class RepositoryAPI() : Repository {
         jokeApiService = retrofit.create(JokeApiService::class.java)
     }
 
-    // Get any joke independant of choosen parameters
+    // Get any joke independent of chosen parameters
     override suspend fun getAnyJoke(
         categories: List<AvailableCategories>,
         language: AvailableLanguages,

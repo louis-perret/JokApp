@@ -12,6 +12,7 @@ import fr.iut.jokapp.local.modele.AvailableLanguages
 import fr.iut.jokapp.repository.converter.AvailableLanguagesToInt
 import fr.iut.jokapp.view.JokAppApplication
 
+// Represents the fragment for the different languages that we can choose
 class FragmentFilterLanguage : Fragment() {
 
     private var spinnerLanguage: Spinner? = null
@@ -25,6 +26,7 @@ class FragmentFilterLanguage : Fragment() {
         spinnerLanguage = view.findViewById(R.id.spinnerLanguages)
         spinnerLanguage?.adapter = ArrayAdapter(view.context, R.layout.spinner_cell_language, AvailableLanguages.values())
 
+        // To retrieve the old value of this fragment when the user came back to the activity GenerateJokePageActivity
        with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)){
            spinnerLanguage?.setSelection(getInt(JokAppApplication.CHOOSENLANGUAGE, 0))
        }
@@ -33,6 +35,7 @@ class FragmentFilterLanguage : Fragment() {
     }
 
     override fun onDestroy() {
+        // To save values of this fragment when the user change the displayed fragment
         with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()){
             putInt(JokAppApplication.CHOOSENLANGUAGE, AvailableLanguagesToInt().toOrdinal(spinnerLanguage!!.selectedItem as AvailableLanguages))
             apply()

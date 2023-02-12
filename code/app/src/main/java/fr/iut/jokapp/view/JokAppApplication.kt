@@ -3,6 +3,7 @@ package fr.iut.jokapp.view
 import android.app.Application
 import fr.iut.jokapp.repository.room.JokeDatabase
 
+// Represent the application of the application
 class JokAppApplication : Application() {
 
     override fun onCreate() {
@@ -11,6 +12,8 @@ class JokAppApplication : Application() {
     }
 
     companion object {
+        // Contains all key for the shared preferences
+
         val NAMESHAREDPREFERENCES = "JokAppSharedPreferences"
         val FIRSTRENDER = "firstRender"
 

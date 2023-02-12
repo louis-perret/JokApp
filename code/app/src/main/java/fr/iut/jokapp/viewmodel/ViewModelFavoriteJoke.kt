@@ -12,15 +12,17 @@ import fr.iut.jokapp.repository.entity.JokeEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+// View-Model for the FavoriteJokesActivity
 class ViewModelFavoriteJoke : ViewModel() {
 
+    // Repository to do request to the database
     private var repositoryPersistance : RepositoryPersistance = RepositoryBD()
 
-    // Retrieved jokes
+    // Favorite joke
     val jokes = repositoryPersistance.getAllJoke()
 
     fun deleteJoke(joke: JokeEntity?) {
-        viewModelScope.launch() {
+        viewModelScope.launch(Dispatchers.IO) {
             if(joke != null) {
                 repositoryPersistance.deleteJoke(joke)
             }

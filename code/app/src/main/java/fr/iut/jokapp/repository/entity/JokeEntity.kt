@@ -10,6 +10,7 @@ import fr.iut.jokapp.local.modele.Flag
 
 const val NEW_JOKE_ID = 0
 
+// Represents a joke in the bd
 @Entity(tableName = "jokes")
 class JokeEntity(
     @PrimaryKey val id: Int = NEW_JOKE_ID,

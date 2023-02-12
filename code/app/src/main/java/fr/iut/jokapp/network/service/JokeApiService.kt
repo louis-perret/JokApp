@@ -13,7 +13,10 @@ interface JokeApiService {
 
     /* Simple Get method to get any joke
         Parameters :
-            - categs : Representing choosen categories (programming, dark, pun...)
+            - categs : Representing chosen categories (programming, dark, pun...)
+            - lang : Representing chosen language (en, fr, es, de, ...)
+            - flags : Representing chosen blacklist (nsfw, sexist, ...)
+
     */
     @GET("joke/{categs}")
     fun getAnyJoke(

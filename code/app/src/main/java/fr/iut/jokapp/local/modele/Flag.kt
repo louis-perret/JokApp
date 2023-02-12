@@ -18,6 +18,7 @@ data class Flag(
     @SerializedName("explicit")
     var explicit: Boolean
 ){
+    // Turn the values into an acceptable string for the web request
     override fun toString(): String {
         val res = StringBuilder()
         if(nsfw) res.append("nsfw,")
