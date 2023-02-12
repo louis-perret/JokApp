@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.Flag
+import fr.iut.jokapp.view.JokAppApplication
 
 class FragmentBlacklist : Fragment() {
 
@@ -34,6 +35,15 @@ class FragmentBlacklist : Fragment() {
             checkBoxExplicit = findViewById(R.id.checkboxExplicit)
         }
 
+        val preferences = requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)
+        with(preferences) {
+            checkBoxNsfw!!.isChecked = getBoolean(JokAppApplication.ISCHECKEDNSFW, false)
+            checkBoxReligious.isChecked = getBoolean(JokAppApplication.ISCHECKEDRELIGIOUS, false)
+            checkBoxPolitical.isChecked = getBoolean(JokAppApplication.ISCHECKEDPOLITICAL, false)
+            checkBoxRacist.isChecked = getBoolean(JokAppApplication.ISCHECKEDRACIST, false)
+            checkBoxSexist.isChecked = getBoolean(JokAppApplication.ISCHECKEDSEXIST, false)
+            checkBoxExplicit.isChecked = getBoolean(JokAppApplication.ISCHECKEDEXPLICIT, false)
+        }
         return view
     }
 
@@ -47,5 +57,18 @@ class FragmentBlacklist : Fragment() {
             explicit = false
         )
         return Flag(checkBoxNsfw?.isChecked!!, checkBoxReligious.isChecked, checkBoxPolitical.isChecked, checkBoxRacist.isChecked, checkBoxSexist.isChecked, checkBoxExplicit.isChecked)
+    }
+
+    override fun onDestroy() {
+        with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()) {
+            putBoolean(JokAppApplication.ISCHECKEDNSFW, checkBoxNsfw!!.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDRELIGIOUS, checkBoxReligious.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDPOLITICAL, checkBoxPolitical.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDRACIST, checkBoxRacist.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDSEXIST, checkBoxSexist.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDEXPLICIT, checkBoxExplicit.isChecked)
+            apply()
+        }
+        super.onDestroy()
     }
 }

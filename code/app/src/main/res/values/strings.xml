@@ -46,5 +46,6 @@
     <string name="jokeDeleted">Joke successfully deleted</string>
     <string name="jokeDeletedProblem">Problem during the deletion of the joke</string>
     <string name="jokeAddedFavorite">Joke successfully added to favorites</string>
+    <string name="jokeAddedFavoriteProblem">No current joke</string>
     <string name="jokeGenerationProblem">Problem, verify the criteria</string>
 </resources>

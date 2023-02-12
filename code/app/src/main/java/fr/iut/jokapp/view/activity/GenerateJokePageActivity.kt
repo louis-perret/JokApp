@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import fr.iut.jokapp.R
+import fr.iut.jokapp.view.JokAppApplication
 import fr.iut.jokapp.view.callbacks.DisplayJokeCallback
 import fr.iut.jokapp.view.fragments.FragmentDisplayJoke
 import fr.iut.jokapp.view.fragments.options.FragmentBlacklist
@@ -39,10 +40,12 @@ class GenerateJokePageActivity : SimpleBaseActivity(), DisplayJokeCallback {
 
         setSupportActionBar(findViewById(R.id.toolBarGenerateJoke))
 
+
         fragmentFilterCategory = FragmentFilterCategory()
         fragmentFilterLanguage = FragmentFilterLanguage()
         fragmentBlacklist = FragmentBlacklist()
         fragmentTypeOfJoke = FragmentTypeOfJoke()
+        setFragment(fragmentFilterCategory)
 
         if(savedInstanceState != null) {
             fragmentDisplayJoke = supportFragmentManager.findFragmentById(R.id.fragmentDisplayJoke) as FragmentDisplayJoke
@@ -96,7 +99,9 @@ class GenerateJokePageActivity : SimpleBaseActivity(), DisplayJokeCallback {
                     }
                     R.id.action_favorite -> {
                         apiViewModel.addJoke()
-                        displayToast(R.string.jokeAddedFavorite)
+                        if(apiViewModel.joke.value != null) displayToast(R.string.jokeAddedFavorite)
+                        else displayToast(R.string.jokeAddedFavoriteProblem)
+
                         true
                     }
                     else -> {
