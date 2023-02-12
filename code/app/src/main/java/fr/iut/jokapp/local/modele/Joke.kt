@@ -4,12 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 // Represents retrieved joke from the API
 data class Joke(
+    @SerializedName("id")
+    var id: Int,
     @SerializedName("formatVersion")
-    private var formatVersion: String,
+    var formatVersion: String?,
     @SerializedName("category")
-    private var category: String,
+    var category: String,
     @SerializedName("type")
-    private var type: String,
+    var type: String,
     @SerializedName("joke")
     var joke: String?,
     @SerializedName("setup")
@@ -17,8 +19,8 @@ data class Joke(
     @SerializedName("delivery")
     var delivery: String?,
     @SerializedName("flags")
-    private var flags: Flag,
+    var flags: Flag,
     @SerializedName("lang")
-    private var lang: String
+    var lang: String
 ) {
 }

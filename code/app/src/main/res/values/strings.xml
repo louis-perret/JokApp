@@ -40,4 +40,6 @@
     <string name="checkBoxSingleJoke">Single</string>
     <string name="checkBox2PartsJOke">Two parts</string>
     <string name="filterTypeJoke">Type of joke</string>
+    <string name="deleteFavorite">Delete</string>
+    <string name="contentDistributionImageButtonDelete">Delete</string>
 </resources>

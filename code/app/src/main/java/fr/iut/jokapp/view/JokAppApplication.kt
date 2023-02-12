@@ -8,5 +8,6 @@ class JokAppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         JokeDatabase.initialize(this)
+        var teste = JokeDatabase.getInstance()
     }
 }
