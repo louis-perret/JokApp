@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -20,7 +21,7 @@ import fr.iut.jokapp.view.fragments.options.FragmentFilterLanguage
 import fr.iut.jokapp.view.fragments.options.FragmentTypeOfJoke
 import fr.iut.jokapp.viewmodel.ViewModelGenerateJoke
 
-class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
+class GenerateJokePageActivity : SimpleBaseActivity(), DisplayJokeCallback {
 
     private lateinit var apiViewModel: ViewModelGenerateJoke
 
@@ -35,8 +36,6 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.layout_generate_joke)
 
         setSupportActionBar(findViewById(R.id.toolBarGenerateJoke))
 
@@ -97,6 +96,7 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
                     }
                     R.id.action_favorite -> {
                         apiViewModel.addJoke()
+                        displayToast(R.string.jokeAddedFavorite)
                         true
                     }
                     else -> {
@@ -125,34 +125,13 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
             if (categories.isNotEmpty()) apiViewModel.getJoke(categories, choosenLanguage, flags, types)
         }
         catch (e: Exception) {
-            println(e.message)
+            displayToast(R.string.jokeGenerationProblem)
         }
     }
+
+    override fun getLayoutResId() = R.layout.layout_generate_joke
 
     companion object {
         fun getIntent(context: Context) = Intent(context, GenerateJokePageActivity::class.java)
     }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean("ffrf", true)
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-    }
-    override fun onStop() {
-
-        super.onStop()
-    }
-
-    override fun onPause() {
-
-        super.onPause()
-    }
-
 }
