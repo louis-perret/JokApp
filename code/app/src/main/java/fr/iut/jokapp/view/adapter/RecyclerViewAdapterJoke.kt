@@ -2,15 +2,21 @@ package fr.iut.jokapp.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.Joke
-import fr.iut.jokapp.repository.room.JokeDatabase
-import fr.iut.jokapp.view.callbacks.OnItemClickListener
-import fr.iut.jokapp.view.callbacks.SetCurrentJokeCallback
+import fr.iut.jokapp.repository.entity.JokeEntity
+import fr.iut.jokapp.view.callbacks.OnDeleteJokeListener
 
-class RecyclerViewAdapterJoke(private var jokeList: List<Joke>, private var listener : SetCurrentJokeCallback) : RecyclerView.Adapter<JokeViewHolder>(), OnItemClickListener{
+class RecyclerViewAdapterJoke(private var listener : OnDeleteJokeListener) : ListAdapter<JokeEntity, JokeViewHolder>(DiffUtilJokeCallback), OnDeleteJokeListener{
+
+    private object DiffUtilJokeCallback : DiffUtil.ItemCallback<JokeEntity>() {
+        override fun areItemsTheSame(oldItem: JokeEntity, newItem: JokeEntity) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: JokeEntity, newItem: JokeEntity) = oldItem == newItem
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         JokeViewHolder(
@@ -23,13 +29,10 @@ class RecyclerViewAdapterJoke(private var jokeList: List<Joke>, private var list
 
 
 
-    override fun onBindViewHolder(holder: JokeViewHolder, position: Int) = holder.bind(jokeList.get(position))
+    override fun onBindViewHolder(holder: JokeViewHolder, position: Int) = holder.bind(getItem(position))
 
-
-    override fun getItemCount() = jokeList.size
-
-    override fun onClick(joke: Joke?, position: Int) {
+    override fun deleteJoke(joke: JokeEntity?, position: Int) {
+        listener.deleteJoke(joke, position)
         notifyItemChanged(position)
-        listener.setCurrentJoke(joke)
     }
 }

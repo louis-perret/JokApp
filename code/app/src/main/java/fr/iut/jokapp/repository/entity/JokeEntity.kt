@@ -22,4 +22,23 @@ class JokeEntity(
     @Embedded var flags : Flag? = null,
     var lang: AvailableLanguages = AvailableLanguages.En
 ) {
+
+    override fun equals(other: Any?): Boolean {
+        if(other == null) return false
+        if(this === other) return true
+        if(javaClass != other.javaClass) return false
+
+        var obj = other as JokeEntity
+        var res = true
+        if(id != obj.id) res = false
+        if(formatVersion != obj.formatVersion) res = false
+        if(category != obj.category) res = false
+        if(type != obj.type) res = false
+        if(joke != obj.joke) res = false
+        if(setup != obj.setup) res = false
+        if(delivery != obj.delivery) res = false
+        if(lang != obj.lang) res = false
+
+        return res
+    }
 }

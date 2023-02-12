@@ -3,7 +3,6 @@ package fr.iut.jokapp.view.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -19,11 +18,11 @@ import fr.iut.jokapp.view.fragments.options.FragmentBlacklist
 import fr.iut.jokapp.view.fragments.options.FragmentFilterCategory
 import fr.iut.jokapp.view.fragments.options.FragmentFilterLanguage
 import fr.iut.jokapp.view.fragments.options.FragmentTypeOfJoke
-import fr.iut.jokapp.viewmodel.ApiViewModel
+import fr.iut.jokapp.viewmodel.ViewModelGenerateJoke
 
 class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
 
-    private lateinit var apiViewModel: ApiViewModel
+    private lateinit var apiViewModel: ViewModelGenerateJoke
 
     private lateinit var fragmentFilterCategory : FragmentFilterCategory
     private lateinit var fragmentFilterLanguage: FragmentFilterLanguage
@@ -57,7 +56,7 @@ class GenerateJokePageActivity : AppCompatActivity(), DisplayJokeCallback {
                 .commit()
         }
 
-        apiViewModel = ViewModelProvider(this).get(fr.iut.jokapp.viewmodel.ApiViewModel::class.java)
+        apiViewModel = ViewModelProvider(this).get(fr.iut.jokapp.viewmodel.ViewModelGenerateJoke::class.java)
         apiViewModel.joke.observe(this) {
             val jokeToDisplay = apiViewModel.joke.value
             if(jokeToDisplay != null) {

@@ -1,29 +1,26 @@
 package fr.iut.jokapp.view.adapter
 
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableCategories
-import fr.iut.jokapp.local.modele.Joke
-import fr.iut.jokapp.view.callbacks.OnItemClickListener
-import fr.iut.jokapp.view.callbacks.SetCurrentJokeCallback
+import fr.iut.jokapp.repository.entity.JokeEntity
+import fr.iut.jokapp.view.callbacks.OnDeleteJokeListener
 
-class JokeViewHolder(private var itemView : View,  private var listener : OnItemClickListener) : ViewHolder(itemView) {
+class JokeViewHolder(private var itemView : View,  private var listener : OnDeleteJokeListener) : ViewHolder(itemView) {
 
-    private var joke : Joke? = null
+    private lateinit var joke : JokeEntity
     private var textViewTypeJoke : TextView
     private var textViewLangJoke : TextView
     private var textViewTextJoke : TextView
     private var textViewTextJokeAnswer : TextView
     private var textViewTextJokeCategory : TextView
     private var cardViewJokeViewHolder : CardView
-
-    private var currentColor : Int = 0
-    private var colorNotClicked : Int = 0
-    private var colorClicked : Int = 0
+    private var imageButton : ImageButton
 
     init {
         with(itemView) {
@@ -33,24 +30,16 @@ class JokeViewHolder(private var itemView : View,  private var listener : OnItem
             textViewTextJokeAnswer = findViewById(R.id.textJokeAnswer)
             textViewTextJokeCategory = findViewById(R.id.textJokeCategory)
             cardViewJokeViewHolder = findViewById(R.id.cardViewJokeViewHolder)
+            imageButton = findViewById(R.id.buttonDeleteJoke)
+            imageButton.setOnClickListener() { listener.deleteJoke(joke, adapterPosition)}
         }
-        cardViewJokeViewHolder.setOnClickListener() {
-            if(currentColor == colorNotClicked) {
-                currentColor = colorClicked
-            }
-            else {
-                currentColor = colorNotClicked
-            }
-            listener.onClick(joke,adapterPosition)
-        }
-
     }
 
-    fun bind(joke : Joke) {
+    fun bind(joke : JokeEntity) {
         this.joke = joke
         with(joke) {
             textViewTypeJoke.text = type
-            textViewLangJoke.text = lang
+            textViewLangJoke.text = lang.toString()
             textViewTextJokeCategory.text = category
             if(type.equals("single")) {
                 textViewTextJoke.text = joke.joke
@@ -63,40 +52,32 @@ class JokeViewHolder(private var itemView : View,  private var listener : OnItem
                 textViewTextJokeAnswer.visibility = View.VISIBLE
             }
 
+            var color : Int
             when(category){
                 AvailableCategories.Programming.toString() -> {
-                    colorNotClicked = R.color.colorProgramming
-                    colorClicked = R.color.colorProgrammingClicked
+                    color = R.color.colorProgramming
                 }
                 AvailableCategories.Misc.toString() -> {
-                    colorNotClicked = R.color.colorMisc
-                    colorNotClicked = R.color.colorMiscClicked
+                    color = R.color.colorMisc
                 }
                 AvailableCategories.Dark.toString() -> {
-                    colorNotClicked = R.color.colorDark
-                    colorClicked = R.color.colorDarkClicked
+                    color = R.color.colorDark
                 }
                 AvailableCategories.Pun.toString() -> {
-                    colorNotClicked = R.color.colorPun
-                    colorClicked = R.color.colorPunClicked
+                    color =R.color.colorPun
                 }
                 AvailableCategories.Spooky.toString() -> {
-                    colorNotClicked = R.color.colorSpooky
-                    colorClicked = R.color.colorSpookyClicked
+                    color = R.color.colorSpooky
                 }
                 AvailableCategories.Christmas.toString() -> {
-                    colorNotClicked = R.color.colorChristmas
-                    colorClicked = R.color.colorChristmasClicked
+                    color = R.color.colorChristmas
                 }
                 else -> {
-                    colorNotClicked = R.color.colorAny
-                    colorClicked = R.color.colorAnyClicked
+                    color =R.color.colorAny
                 }
             }
-
-            currentColor = colorNotClicked
             cardViewJokeViewHolder.setCardBackgroundColor(
-                ContextCompat.getColor(itemView.context, currentColor)
+                ContextCompat.getColor(itemView.context, color)
             )
 
         }

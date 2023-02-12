@@ -1,5 +1,6 @@
 package fr.iut.jokapp.repository.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import fr.iut.jokapp.repository.entity.JokeEntity
 
@@ -7,7 +8,7 @@ import fr.iut.jokapp.repository.entity.JokeEntity
 interface JokeDao {
 
     @Query("SELECT * FROM jokes")
-    fun getAll(): List<JokeEntity>
+    fun getAll(): LiveData<List<JokeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertJoke(joke : JokeEntity)
