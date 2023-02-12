@@ -16,7 +16,7 @@ import fr.iut.jokapp.repository.RepositoryPersistance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-// View Model of the application
+// View-Model for the GenerateJokesPageActivity
 class ViewModelGenerateJoke : ViewModel() {
 
     // Repository to retrieve wanted jokes
@@ -42,7 +42,7 @@ class ViewModelGenerateJoke : ViewModel() {
 
 
     fun addJoke() {
-        viewModelScope.launch() {
+        viewModelScope.launch(Dispatchers.IO) {
             if (joke.value != null) {
                 repositoryPersistance.addJoke(joke.value!!)
             }

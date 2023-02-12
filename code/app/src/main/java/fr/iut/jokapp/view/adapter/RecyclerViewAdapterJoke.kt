@@ -11,8 +11,10 @@ import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.repository.entity.JokeEntity
 import fr.iut.jokapp.view.callbacks.OnDeleteJokeListener
 
+// Recycler view of the app
 class RecyclerViewAdapterJoke(private var listener : OnDeleteJokeListener) : ListAdapter<JokeEntity, JokeViewHolder>(DiffUtilJokeCallback), OnDeleteJokeListener{
 
+    // To compare if two jokes are similar in order to know which element must be updated
     private object DiffUtilJokeCallback : DiffUtil.ItemCallback<JokeEntity>() {
         override fun areItemsTheSame(oldItem: JokeEntity, newItem: JokeEntity) = oldItem.id == newItem.id
         override fun areContentsTheSame(oldItem: JokeEntity, newItem: JokeEntity) = oldItem == newItem

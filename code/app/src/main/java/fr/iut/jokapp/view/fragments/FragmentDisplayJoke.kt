@@ -12,6 +12,7 @@ import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.Joke
 import fr.iut.jokapp.view.callbacks.DisplayJokeCallback
 
+// Represents the fragment which displayed the joke retrieved by the api
 class FragmentDisplayJoke() : Fragment(){
 
     private lateinit var jokeToDisplay: Joke

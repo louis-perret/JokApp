@@ -14,8 +14,10 @@ import fr.iut.jokapp.view.adapter.RecyclerViewAdapterJoke
 import fr.iut.jokapp.view.callbacks.OnDeleteJokeListener
 import fr.iut.jokapp.viewmodel.ViewModelFavoriteJoke
 
+// Represents the UI of the display of favorite jokes
 class FavoriteJokesActivity : SimpleBaseActivity(), OnDeleteJokeListener {
 
+    // View-Model
     private lateinit var viewModelJokeApp: ViewModelFavoriteJoke
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,7 @@ class FavoriteJokesActivity : SimpleBaseActivity(), OnDeleteJokeListener {
         var adapter = RecyclerViewAdapterJoke(this)
         recyclerView.adapter = adapter
 
+        // To update the recycler view when a element is deleted
         viewModelJokeApp.jokes.observe(this) {
             adapter.submitList(it)
         }
@@ -34,6 +37,7 @@ class FavoriteJokesActivity : SimpleBaseActivity(), OnDeleteJokeListener {
 
     override fun getLayoutResId() = R.layout.layout_favorite_jokes
 
+    // Delete a joke
     override fun deleteJoke(joke: JokeEntity?, position: Int) {
         try {
             viewModelJokeApp.deleteJoke(joke)

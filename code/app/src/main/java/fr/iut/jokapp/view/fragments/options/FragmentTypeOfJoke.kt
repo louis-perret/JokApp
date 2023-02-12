@@ -10,6 +10,7 @@ import fr.iut.jokapp.R
 import fr.iut.jokapp.network.api.APIRequestParameter
 import fr.iut.jokapp.view.JokAppApplication
 
+// Represents the fragment for the different kind of joke that we can choose
 class FragmentTypeOfJoke : Fragment() {
 
     private var checkBoxSingleJoke : CheckBox? = null
@@ -29,6 +30,7 @@ class FragmentTypeOfJoke : Fragment() {
             checkBox2PartsJoke = findViewById(R.id.checkBox2PartsJoke)
         }
 
+        // To retrieve the old value of this fragment when the user came back to the activity GenerateJokePageActivity
         with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)){
             checkBoxSingleJoke!!.isChecked = getBoolean(JokAppApplication.ISSINGLEJOKE, true)
             checkBox2PartsJoke!!.isChecked = getBoolean(JokAppApplication.ISTWOPARTJOKE, true)
@@ -37,6 +39,7 @@ class FragmentTypeOfJoke : Fragment() {
     }
 
     override fun onDestroy() {
+        // To save values of this fragment when the user change the displayed fragment
         with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()){
             putBoolean(JokAppApplication.ISSINGLEJOKE, checkBoxSingleJoke!!.isChecked)
             putBoolean(JokAppApplication.ISTWOPARTJOKE, checkBox2PartsJoke!!.isChecked)

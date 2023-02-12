@@ -10,6 +10,7 @@ import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableCategories
 import fr.iut.jokapp.view.JokAppApplication
 
+// Represents the fragment for the different categories that we can choose
 class FragmentFilterCategory() : Fragment() {
 
     private val ISFIRSTRENDER = "isFirstRender"
@@ -38,6 +39,7 @@ class FragmentFilterCategory() : Fragment() {
             checkBoxChristmas = findViewById(R.id.checkboxChristmas)
         }
 
+        // To retriese the old values of this fragment when the user came back to the activity GenerateJokePageActivity
         val preferences = requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)
         with(preferences) {
             checkBoxProgramming.isChecked = getBoolean(JokAppApplication.ISCHECKEDPROGRAMMING, false)
@@ -72,6 +74,7 @@ class FragmentFilterCategory() : Fragment() {
     }
 
     override fun onDestroy() {
+        // To save values of this fragment when the user change the displayed fragment
         with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()) {
             putBoolean(JokAppApplication.ISCHECKEDPROGRAMMING, checkBoxProgramming.isChecked)
             putBoolean(JokAppApplication.ISCHECKEDMISC, checkBoxMisc.isChecked)

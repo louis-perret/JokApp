@@ -11,6 +11,7 @@ import fr.iut.jokapp.local.modele.AvailableCategories
 import fr.iut.jokapp.repository.entity.JokeEntity
 import fr.iut.jokapp.view.callbacks.OnDeleteJokeListener
 
+// View holder of my joke
 class JokeViewHolder(private var itemView : View,  private var listener : OnDeleteJokeListener) : ViewHolder(itemView) {
 
     private lateinit var joke : JokeEntity

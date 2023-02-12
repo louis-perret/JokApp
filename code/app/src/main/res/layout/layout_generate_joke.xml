@@ -21,7 +21,6 @@
         android:id="@+id/fragmentDisplayJoke"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"/>
+        android:layout_weight="1"/>
 
 </LinearLayout>

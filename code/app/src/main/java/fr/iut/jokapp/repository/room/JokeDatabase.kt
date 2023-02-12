@@ -11,10 +11,12 @@ import fr.iut.jokapp.repository.entity.JokeEntity
 
 private const val JOKE_DB_FILENAME = "joke.db"
 
+// Represent the access to the database
 @Database(entities = [JokeEntity::class], version = 1)
 @TypeConverters(AvailableLanguagesToInt::class)
 abstract class JokeDatabase : RoomDatabase() {
 
+    // Retrieve the dao in order to do request to the bd
     abstract fun jokeDAO() : JokeDao
 
     companion object {
@@ -23,6 +25,7 @@ abstract class JokeDatabase : RoomDatabase() {
         @Volatile
         private var instance : JokeDatabase? = null
 
+        // Return an instance of JokeDatabase as a singleton
         fun getInstance(): JokeDatabase {
             if (::application.isInitialized) {
                 if (instance == null)
@@ -42,6 +45,7 @@ abstract class JokeDatabase : RoomDatabase() {
                 throw RuntimeException("The database must be first initialized")
         }
 
+        // Initialize the creation of the database
         @Synchronized
         fun initialize(app: Application) {
             if (::application.isInitialized)
