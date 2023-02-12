@@ -9,6 +9,8 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableLanguages
+import fr.iut.jokapp.repository.converter.AvailableLanguagesToInt
+import fr.iut.jokapp.view.JokAppApplication
 
 class FragmentFilterLanguage : Fragment() {
 
@@ -22,10 +24,21 @@ class FragmentFilterLanguage : Fragment() {
         val view = inflater.inflate(R.layout.fragment_filter_language, container, false)
         spinnerLanguage = view.findViewById(R.id.spinnerLanguages)
         spinnerLanguage?.adapter = ArrayAdapter(view.context, R.layout.spinner_cell_language, AvailableLanguages.values())
-        spinnerLanguage?.setSelection(0)
+
+       with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)){
+           spinnerLanguage?.setSelection(getInt(JokAppApplication.CHOOSENLANGUAGE, 0))
+       }
+
         return view
     }
 
+    override fun onDestroy() {
+        with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()){
+            putInt(JokAppApplication.CHOOSENLANGUAGE, AvailableLanguagesToInt().toOrdinal(spinnerLanguage!!.selectedItem as AvailableLanguages))
+            apply()
+        }
+        super.onDestroy()
+    }
     fun getChoosenLanguage() : AvailableLanguages{
         if(spinnerLanguage == null) {
             return AvailableLanguages.En

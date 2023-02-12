@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
 import fr.iut.jokapp.network.api.APIRequestParameter
+import fr.iut.jokapp.view.JokAppApplication
 
 class FragmentTypeOfJoke : Fragment() {
 
@@ -28,9 +29,21 @@ class FragmentTypeOfJoke : Fragment() {
             checkBox2PartsJoke = findViewById(R.id.checkBox2PartsJoke)
         }
 
+        with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)){
+            checkBoxSingleJoke!!.isChecked = getBoolean(JokAppApplication.ISSINGLEJOKE, true)
+            checkBox2PartsJoke!!.isChecked = getBoolean(JokAppApplication.ISTWOPARTJOKE, true)
+        }
         return view
     }
 
+    override fun onDestroy() {
+        with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()){
+            putBoolean(JokAppApplication.ISSINGLEJOKE, checkBoxSingleJoke!!.isChecked)
+            putBoolean(JokAppApplication.ISTWOPARTJOKE, checkBox2PartsJoke!!.isChecked)
+            apply()
+        }
+        super.onDestroy()
+    }
     fun getChoosenTypes() : APIRequestParameter {
         val parameters = APIRequestParameter()
         if(checkBoxSingleJoke == null || checkBoxSingleJoke?.isChecked!!) parameters.addValue(PARAMETERSINGLEJOKE)

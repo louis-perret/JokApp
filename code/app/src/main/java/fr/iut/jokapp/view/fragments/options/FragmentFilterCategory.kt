@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import fr.iut.jokapp.R
 import fr.iut.jokapp.local.modele.AvailableCategories
+import fr.iut.jokapp.view.JokAppApplication
 
 class FragmentFilterCategory() : Fragment() {
 
@@ -37,11 +38,24 @@ class FragmentFilterCategory() : Fragment() {
             checkBoxChristmas = findViewById(R.id.checkboxChristmas)
         }
 
+        val preferences = requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0)
+        with(preferences) {
+            checkBoxProgramming.isChecked = getBoolean(JokAppApplication.ISCHECKEDPROGRAMMING, false)
+            checkBoxMisc.isChecked = getBoolean(JokAppApplication.ISCHECKEDMISC, false)
+            checkBoxDark.isChecked = getBoolean(JokAppApplication.ISCHECKEDDARK, false)
+            checkBoxPun.isChecked = getBoolean(JokAppApplication.ISCHECKEDPUN, false)
+            checkBoxSpooky.isChecked = getBoolean(JokAppApplication.ISCHECKEDSPOOKY, false)
+            checkBoxChristmas.isChecked = getBoolean(JokAppApplication.ISCHECKEDCHRISTMAS, false)
+        }
+
         checkBoxAny?.setOnClickListener { setTheCheckedProperty(!(it as CheckBox).isChecked) }
         if(!checkBoxAny?.isChecked!! && !checkBoxProgramming.isChecked && !checkBoxMisc.isChecked && !checkBoxDark.isChecked && !checkBoxPun.isChecked && !checkBoxSpooky.isChecked && !checkBoxChristmas.isChecked) {
             checkBoxAny?.isChecked = true
             setTheCheckedProperty(false)
         }
+
+
+
         return view
     }
 
@@ -58,6 +72,15 @@ class FragmentFilterCategory() : Fragment() {
     }
 
     override fun onDestroy() {
+        with(requireContext().getSharedPreferences(JokAppApplication.NAMESHAREDPREFERENCES, 0).edit()) {
+            putBoolean(JokAppApplication.ISCHECKEDPROGRAMMING, checkBoxProgramming.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDMISC, checkBoxMisc.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDDARK, checkBoxDark.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDPUN, checkBoxPun.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDSPOOKY, checkBoxSpooky.isChecked)
+            putBoolean(JokAppApplication.ISCHECKEDCHRISTMAS, checkBoxChristmas.isChecked)
+            apply()
+        }
         super.onDestroy()
     }
     fun getAllChoosenCategories(): List<AvailableCategories> {

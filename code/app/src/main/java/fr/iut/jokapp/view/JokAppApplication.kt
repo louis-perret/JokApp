@@ -8,6 +8,29 @@ class JokAppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         JokeDatabase.initialize(this)
-        var teste = JokeDatabase.getInstance()
+    }
+
+    companion object {
+        val NAMESHAREDPREFERENCES = "JokAppSharedPreferences"
+        val FIRSTRENDER = "firstRender"
+
+        val ISCHECKEDPROGRAMMING = "isCheckedProgramming"
+        val ISCHECKEDMISC = "isCheckedMisc"
+        val ISCHECKEDDARK = "isCheckedDark"
+        val ISCHECKEDPUN = "isCheckedPun"
+        val ISCHECKEDSPOOKY = "isCheckedSpooky"
+        val ISCHECKEDCHRISTMAS = "isCheckedChristmas"
+
+        val ISCHECKEDNSFW = "isCheckedNsfw"
+        val ISCHECKEDRELIGIOUS = "isCheckedReligious"
+        val ISCHECKEDPOLITICAL = "isCheckedPolitical"
+        val ISCHECKEDRACIST = "isCheckedRacist"
+        val ISCHECKEDSEXIST = "isCheckedSexist"
+        val ISCHECKEDEXPLICIT = "isCheckedExplicit"
+
+        val CHOOSENLANGUAGE = "choosenLanguage"
+
+        val ISSINGLEJOKE = "isSingleJoke"
+        val ISTWOPARTJOKE = "isTwoPartJoke"
     }
 }
