@@ -42,4 +42,9 @@
     <string name="filterTypeJoke">Type of joke</string>
     <string name="deleteFavorite">Delete</string>
     <string name="contentDistributionImageButtonDelete">Delete</string>
+
+    <string name="jokeDeleted">Joke successfully deleted</string>
+    <string name="jokeDeletedProblem">Problem during the deletion of the joke</string>
+    <string name="jokeAddedFavorite">Joke successfully added to favorites</string>
+    <string name="jokeGenerationProblem">Problem, verify the criteria</string>
 </resources>

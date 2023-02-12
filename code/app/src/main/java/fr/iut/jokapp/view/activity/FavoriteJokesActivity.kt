@@ -14,13 +14,12 @@ import fr.iut.jokapp.view.adapter.RecyclerViewAdapterJoke
 import fr.iut.jokapp.view.callbacks.OnDeleteJokeListener
 import fr.iut.jokapp.viewmodel.ViewModelFavoriteJoke
 
-class FavoriteJokesActivity : AppCompatActivity(), OnDeleteJokeListener {
+class FavoriteJokesActivity : SimpleBaseActivity(), OnDeleteJokeListener {
 
     private lateinit var viewModelJokeApp: ViewModelFavoriteJoke
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_favorite_jokes)
 
         viewModelJokeApp = ViewModelProvider(this).get(fr.iut.jokapp.viewmodel.ViewModelFavoriteJoke::class.java)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewJoke)
@@ -33,13 +32,24 @@ class FavoriteJokesActivity : AppCompatActivity(), OnDeleteJokeListener {
         }
     }
 
+    override fun getLayoutResId() = R.layout.layout_favorite_jokes
+
+    override fun deleteJoke(joke: JokeEntity?, position: Int) {
+        try {
+            viewModelJokeApp.deleteJoke(joke)
+            displayToast(R.string.jokeDeleted)
+        }
+        catch(e: Exception) {
+            displayToast(R.string.jokeDeletedProblem)
+        }
+
+    }
+
     companion object {
         fun getIntent(context: Context) = Intent(context, FavoriteJokesActivity::class.java)
     }
 
-    override fun deleteJoke(joke: JokeEntity?, position: Int) {
-        viewModelJokeApp.deleteJoke(joke)
-    }
+
 
 
 }
